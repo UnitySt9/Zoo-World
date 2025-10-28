@@ -17,5 +17,6 @@ namespace _Project.Scripts.Core.Configs
         [Header("Snake Settings")]
         public float SnakeMoveSpeed = 3f;
         public float SnakeDirectionChangeInterval = 3f;
+        public float SnakeRotationSpeed = 5f;
     }
 }

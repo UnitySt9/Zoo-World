@@ -3,10 +3,10 @@ using UnityEngine;
 using UniRx;
 using Zenject;
 using _Project.Scripts.Animals.Base;
-using _Project.Scripts.Core.Configs;
 using _Project.Scripts.Core.Signals;
 using _Project.Scripts.Gameplay;
 using _Project.Scripts.Gameplay.WorldBounds;
+using _Project.Scripts.Core.Configs;
 
 namespace _Project.Scripts.Animals.Predators
 {
@@ -29,17 +29,19 @@ namespace _Project.Scripts.Animals.Predators
         public override void Initialize()
         {
             base.Initialize();
-            
+            CorrectSnakeOrientation();
             Observable.Interval(TimeSpan.FromSeconds(_gameConfig.SnakeDirectionChangeInterval))
                 .TakeUntilDisable(this)
                 .Subscribe(_ => ChangeDirection())
                 .AddTo(_disposables);
-            
             ChangeDirection();
-            
             Observable.EveryUpdate()
                 .TakeUntilDisable(this)
                 .Subscribe(_ => Move())
+                .AddTo(_disposables);
+            Observable.EveryUpdate()
+                .TakeUntilDisable(this)
+                .Subscribe(_ => UpdateRotation())
                 .AddTo(_disposables);
         }
     
@@ -49,6 +51,25 @@ namespace _Project.Scripts.Animals.Predators
                 return;
             _rigidbody.velocity = _currentDirection * _gameConfig.SnakeMoveSpeed;
             CheckWorldBounds();
+        }
+        
+        private void CorrectSnakeOrientation()
+        {
+            transform.rotation = Quaternion.Euler(90f, 0f, 0f);
+        }
+        
+        private void UpdateRotation()
+        {
+            if (!IsAlive.Value || _rigidbody.velocity.magnitude < 0.1f) 
+                return;
+            Vector3 movementDirection = _rigidbody.velocity.normalized;
+            if (movementDirection != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(movementDirection);
+                targetRotation *= Quaternion.Euler(90f, 0f, 0f);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 
+                    _gameConfig.SnakeRotationSpeed * Time.deltaTime);
+            }
         }
     
         protected override void HandleCollision(IAnimal otherAnimal)
