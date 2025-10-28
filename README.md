@@ -1,81 +1,95 @@
-# Zoo World
-
+Zoo World
 A 3D Unity game demonstrating a food chain simulation in a zoo environment with various animal types and their interactions.
 
-## 🎮 About the Project
-
+🎮 About the Project
 "Zoo World" is an ecosystem simulation where different types of animals interact according to food chain laws. The project is implemented using modern architectural patterns and frameworks.
 
-## ✨ Features
+✨ Features
+Dynamic Animal Spawning - new animals appear every 1-2 seconds
 
-- **Dynamic Animal Spawning** - new animals appear every 1-2 seconds
-- **Realistic Food Chain** - predators eat prey, predators fight each other
-- **Physical Interactions** - animals collide and bounce according to physics laws
-- **Smart Behavior** - animals don't leave screen boundaries
-- **Statistics System** - tracking killed animal counts
-- **Visual Effects** - "Tasty!" text appears when animals are eaten
+Realistic Food Chain - predators eat prey, predators fight each other
 
-## 🐾 Animal Types
+Physical Interactions - animals collide and bounce according to physics laws
 
-### Frog (Prey)
-- Moves by jumping at fixed intervals
-- Dies when colliding with predators
-- Bounces off other prey animals
+Smart Behavior - animals don't leave screen boundaries
 
-### Snake (Predator)
-- Moves linearly with constant speed
-- Eats prey animals
-- Fights other predators (one survives randomly)
-- Rotates "head" towards movement direction
+Statistics System - tracking killed animal counts
 
-## 🛠 Technical Features
+Visual Effects - "Tasty!" text appears when animals are eaten
 
-### Architecture
-- **Zenject** - Dependency Injection container
-- **UniRx** - Reactive Extensions for Unity
-- **Signal Bus** - communication between systems
-- **MVVM** - for UI layer
-- **Factory Pattern** - animal creation
+🐾 Animal Types
+Frog (Prey)
+Moves by jumping at fixed intervals
 
-### Core Systems
-- `AnimalSpawner` - animal spawning system
-- `WorldBoundsService` - world boundaries management
-- `GameStatsHandler` - statistics tracking
-- `TastyTextController` - visual effects management
+Dies when colliding with predators
 
-## 📋 Requirements
+Bounces off other prey animals
 
-- **Unity 2022.3.24f1**
-- **External Dependencies:**
-  - Zenject
-  - UniRx
+Snake (Predator)
+Moves linearly with constant speed
 
-## 🚀 Installation and Setup
+Eats prey animals
 
-1. Clone the repository:
-```bash
-git clone https://github.com/UnitySt9/Zoo-World.git
-```
+Fights other predators (one survives randomly)
 
-2. Open the project in Unity 2022.3.24f1
+Rotates "head" towards movement direction
 
-3. Ensure required packages are installed:
-   - Zenject
-   - UniRx
+🛠 Technical Features
+Architecture
+Zenject - Dependency Injection container
 
-4. Open the scene from `Scenes/` folder
+UniRx - Reactive Extensions for Unity
 
-5. Run the game
+Signal Bus - communication between systems
 
-## ⚙️ Configuration
+MVVM - for UI layer
 
+Factory Pattern - animal creation
+
+Core Systems
+AnimalSpawner - animal spawning system
+
+WorldBoundsService - world boundaries management
+
+GameStatsHandler - statistics tracking
+
+TastyTextController - visual effects management
+
+📋 Requirements
+Unity 2022.3.24f1
+
+External Dependencies:
+
+Zenject
+
+UniRx
+
+🚀 Installation and Setup
+Clone the repository:
+
+bash
+git clone https://github.com/your-username/zoo-world.git
+Open the project in Unity 2022.3.24f1
+
+Ensure required packages are installed:
+
+Zenject
+
+UniRx
+
+Open the scene from Scenes/ folder
+
+Run the game
+
+⚙️ Configuration
 Main game parameters can be configured through config files:
 
-- `GameConfig` - spawning and animal behavior settings
-- `AnimalRegistry` - animal prefab registration
+GameConfig - spawning and animal behavior settings
 
-### Example GameConfig settings:
-```csharp
+AnimalRegistry - animal prefab registration
+
+Example GameConfig settings:
+csharp
 // Spawning intervals
 MinSpawnInterval = 1f
 MaxSpawnInterval = 2f
@@ -89,17 +103,17 @@ FrogJumpHeight = 2f
 SnakeMoveSpeed = 3f
 SnakeDirectionChangeInterval = 3f
 SnakeRotationSpeed = 5f
-```
+🎯 Gameplay
+Animals spawn automatically every 1-2 seconds
 
-## 🎯 Gameplay
+Observe interactions between animals
 
-- Animals spawn automatically every 1-2 seconds
-- Observe interactions between animals
-- Monitor statistics in the top-right corner
-- Predators show "Tasty!" text when eating other animals
+Monitor statistics in the top-right corner
 
-## 📁 Project Structure
+Predators show "Tasty!" text when eating other animals
 
+📁 Project Structure
+text
 Assets/
 ├── _Project/
 │   ├── Materials/         # Game materials
@@ -124,28 +138,29 @@ Assets/
 │           ├── ViewModels/# UI view models (MVVM pattern)
 │           └── Views/     # UI view components
 └── Plugins/               # Third-party plugins and dependencies
-
-## 🔧 Extensibility
-
+🔧 Extensibility
 The project can be easily extended by adding new animal types:
 
-1. Add new `AnimalType` to enum
-2. Create animal class inheriting from `AnimalBase`
-3. Register prefab in `AnimalRegistry`
-4. Configure parameters in `GameConfig`
+Add new AnimalType to enum
 
-## 👥 Development
+Create animal class inheriting from AnimalBase
 
+Register prefab in AnimalRegistry
+
+Configure parameters in GameConfig
+
+👥 Development
 The project is developed with focus on:
-- Clean architecture
-- Easy maintenance and extensibility
-- Modern Unity practices
-- Reactive programming
 
-## 📄 License
+Clean architecture
 
-[Zaur Muchtaroglu]
+Easy maintenance and extensibility
 
----
+Modern Unity practices
 
-*For questions and suggestions, please create an issue in the repository.*
+Reactive programming
+
+📄 License
+[Specify your license]
+
+For questions and suggestions, please create an issue in the repository.
