@@ -3,6 +3,7 @@ using UnityEngine;
 using UniRx;
 using Zenject;
 using _Project.Scripts.Animals.Base;
+using _Project.Scripts.Core.Configs;
 using _Project.Scripts.Core.Signals;
 using _Project.Scripts.Gameplay;
 using _Project.Scripts.Gameplay.WorldBounds;
@@ -11,26 +12,25 @@ namespace _Project.Scripts.Animals.Predators
 {
     public class Snake : AnimalBase
     {
-        [SerializeField] private float moveSpeed = 3f;
-        [SerializeField] private float directionChangeInterval = 3f;
-    
         private CompositeDisposable _disposables = new();
         private IWorldBoundsService _worldBounds;
-        private Vector3 _currentDirection;
+        private GameConfig _gameConfig;
         private TastyTextController _tastyTextController;
+        private Vector3 _currentDirection;
     
         [Inject]
-        public void Construct(IWorldBoundsService worldBounds, TastyTextController tastyTextController)
+        public void Construct(IWorldBoundsService worldBounds, TastyTextController tastyTextController, GameConfig gameConfig)
         {
             _worldBounds = worldBounds;
             _tastyTextController = tastyTextController;
+            _gameConfig = gameConfig;
         }
     
         public override void Initialize()
         {
             base.Initialize();
             
-            Observable.Interval(TimeSpan.FromSeconds(directionChangeInterval))
+            Observable.Interval(TimeSpan.FromSeconds(_gameConfig.SnakeDirectionChangeInterval))
                 .TakeUntilDisable(this)
                 .Subscribe(_ => ChangeDirection())
                 .AddTo(_disposables);
@@ -47,7 +47,7 @@ namespace _Project.Scripts.Animals.Predators
         {
             if (!IsAlive.Value) 
                 return;
-            _rigidbody.velocity = _currentDirection * moveSpeed;
+            _rigidbody.velocity = _currentDirection * _gameConfig.SnakeMoveSpeed;
             CheckWorldBounds();
         }
     
