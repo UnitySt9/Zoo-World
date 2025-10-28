@@ -54,7 +54,7 @@ A 3D Unity game demonstrating a food chain simulation in a zoo environment with 
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/zoo-world.git
+git clone https://github.com/UnitySt9/Zoo-World.git
 ```
 
 2. Open the project in Unity 2022.3.24f1
@@ -146,7 +146,7 @@ The project is developed with focus on:
 
 ## 📄 License
 
-[Specify your license]
+[Zaur Muchtaroglu]
 
 ---
 
