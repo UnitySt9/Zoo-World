@@ -17,7 +17,6 @@ namespace _Project.Scripts.Animals.Base
         [SerializeField] protected AnimalDiet diet;
     
         protected Rigidbody _rigidbody;
-        protected Collider _collider;
         protected SignalBus _signalBus;
     
         [Inject]
@@ -29,7 +28,6 @@ namespace _Project.Scripts.Animals.Base
         protected virtual void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
-            _collider = GetComponent<Collider>();
         }
     
         protected virtual void OnCollisionEnter(Collision collision)
