@@ -5,6 +5,7 @@ namespace _Project.Scripts.Animals.Base
         Frog,
         Snake
         //Можно добавить прочих диких псов
+        //Можно добавить прочих диких псов
     }
 
     public enum AnimalDiet
